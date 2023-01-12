@@ -4,30 +4,53 @@
         <label for="cantidadPaginas" class="mediana">Eliges las cantidad de páginas</label>
         <br>
         <button @click="calcularPresupuesto('masPag')">+</button>
-        <input type="number" id="cantidadPaginas"  :cantidadPaginas="cantidadPaginas" :value="cantidadPaginas" @change="calcularPresupuesto('manualPag')"> 
+        <input type="number" min="1" id="cantidadPaginas"  :cantidadPaginas="cantidadPaginas" :value="cantidadPaginas" @change="calcularPresupuesto('manualPag')"> 
         <button @click="calcularPresupuesto('menosPag')">-</button>
         <br>
+        
 
 
+     
+       <!-- < ComponenteFill @accio1="f1"/ > ;
+(S’espera la contestació del fill amb el nom ‘accio1’ i en aquell moment s’executarà el method anomenat f1)
+
+A:  < template > o a methods: {
+f1(variable){
+(El valor rebut és diu variable)
+        -->
+        
         <label for="cantidadIdiomas"  class="mediana"> Eliges la cantidad de idiomas</label>
         <br>
         <button @click="calcularPresupuesto('masIdio')">+</button>
-        <input type="number" id="cantidadIdiomas"  :cantidadIdiomas="cantidadIdiomas" :value="cantidadIdiomas"  @change="calcularPresupuesto('manualIdio')" >
+        <!-- <baseInput /> -->
+        <input type="number" min="1" id="cantidadIdiomas"  :cantidadIdiomas="cantidadIdiomas" :value="cantidadIdiomas"  @change="calcularPresupuesto('manualIdio')" >
         <button @click="calcularPresupuesto('menosIdio')">-</button>
+        <br>
+
+
+       
+       
+        
 
     </div>
 </template>
 
 
 <script>
+
+import BaseInput from '@/components/BaseInput.vue'
 export default {
     name: 'Panell',
-    props:['calcularPresupuesto' , 'value'],
+    components:{
+   BaseInput
+    },
+    props:['calcularPresupuesto' , 'value', ],
 
     data() {
         return {
         cantidadPaginas:1,
         cantidadIdiomas:1,
+        
         
         }
     },
@@ -39,7 +62,8 @@ export default {
     methods: {
         calcularPresupuesto(accion){
         this.$parent.calcularPresupuesto(accion);
-    }
+    },
+    
     }
 
 }
@@ -79,8 +103,7 @@ button{
   text-align: center;
   font-size: 16px;
   
-  
-
-
 }
+
+
 </style>

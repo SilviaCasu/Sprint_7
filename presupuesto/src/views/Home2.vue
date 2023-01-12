@@ -1,9 +1,12 @@
 <template>
   
   <div class="home">
-   
-    <div id="iniciar" >
- <h1>Seleciona las opciónes que deseas</h1><br>
+    <bienvenida/>
+  
+   <button v-on:click="iniciar=true" v-if="!iniciar">Calcula tu presupuesto </button>
+  
+    <div id="iniciar" v-if="iniciar" >
+ 
     <label> Presupuesto por una pàgina web - 500 €</label> 
     <input type="checkbox" id="web" value="500" v-model.number="optionsForm.options" v-on:change="calcularPresupuesto()">
     <br> <br> 
@@ -20,10 +23,12 @@
     <input type="checkbox" id="pub"  value="200" v-model.number="optionsForm.options"  v-on:change="calcularPresupuesto()">
   <br><br> 
   <p> Total presupuesto: {{ total }}€</p>
-  <button @click="$router.go(-1)">Vuelve atras</button>
-   
+ 
+     <button v-on:click="iniciar=false" :iniciar="iniciar">ssssVolver a inicio </button>
  </div>
-
+  <router-link to="Home"> 
+    <button>Vuelves a la Home</button>
+  </router-link>
  </div>
 </template>
 
@@ -48,7 +53,7 @@ export default {
     return{
 
       total:0,
-     //iniciar: false,
+      iniciar: false,
       optionsForm :{
       options  : [],
       cantidadPaginas:0,
@@ -64,8 +69,8 @@ console.log(this.optionsForm);
     this.cantidadPaginas++;
     cantidadPaginas.value=this.cantidadPaginas;
   }
-  if (accion =="menosPag") {
-    if(this.cantidadPaginas <= 1) {
+  if (accion=="menosPag") {
+    if(this.cantidadPaginas==1) {
       alert ("la cantidad mínima es una pagina!");
     } else {
     this.cantidadPaginas--;
@@ -73,12 +78,6 @@ console.log(this.optionsForm);
     }
   }
   if (accion=="manualPag") {
-    if (cantidadPaginas.value < 1) {
-      alert ("la cantidad mínima es una pagina!");
-      cantidadPaginas.value = '';
-    }
-
-    
     this.cantidadPaginas=cantidadPaginas.value;
   }
   if (accion=="masIdio") {
@@ -86,7 +85,7 @@ console.log(this.optionsForm);
     cantidadIdiomas.value=this.cantidadIdiomas;
   }
   if (accion=="menosIdio") {
-    if(this.cantidadIdiomas <= 1) {
+    if(this.cantidadIdiomas==1) {
       alert ("la cantidad mínima es un idioma!");
     } else {
     this.cantidadIdiomas--;
@@ -94,14 +93,8 @@ console.log(this.optionsForm);
     }
   }
   if (accion=="manualIdio") {
-    if (cantidadIdiomas.value < 1) {
-      alert ("la cantidad mínima es un idioma!");
-      cantidadIdiomas.value = '';
-    }
     this.cantidadIdiomas=cantidadIdiomas.value;
   }
-
-  
 
    
     let total = 0;
@@ -140,7 +133,9 @@ h1{
 
 }
 #iniciar {
+ 
   font-family: Avenir, Helvetica, Arial, sans-serif;
+  
   text-align: center;
   color: #0d0e0f;
 }

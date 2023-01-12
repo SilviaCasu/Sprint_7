@@ -6,6 +6,11 @@ const routes = [
   {
     path: '/',
     name: 'home',
+    component: () => import(/* webpackChunkName: "Home" */ '../components/Bienvenida.vue')
+  },
+  {
+    path: '/Home',
+    name: 'Home',
     component: () => import(/* webpackChunkName: "Home" */ '../views/Home.vue')
   },
   {
@@ -13,7 +18,11 @@ const routes = [
     name: 'panell',
     component: () => import(/* webpackChunkName: "Panell" */ '../components/Panell.vue')
   },
-
+  {
+    path: '/baseInput',
+    name: 'baseInput',
+    component: () => import(/* webpackChunkName: "baseInput" */ '../components/BaseInput.vue')
+  },
 
   
 ]
