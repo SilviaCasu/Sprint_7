@@ -9,6 +9,8 @@
     <br> <br> 
       <div id="panellWeb" v-if="optionsForm.options[0]==500 || optionsForm.options[1]==500 || optionsForm.options[2]==500">
           <panell @cantidadPaginas="cantidadPaginas=$event"  @cantidadIdiomas="cantidadIdiomas=$event"/>
+         
+
           <p class="mediana"> has selecionado {{cantidadPaginas }} páginas</p>
           <p class="mediana"> has selecionado {{cantidadIdiomas }} idiomas</p>
         </div>
@@ -75,7 +77,7 @@ console.log(this.optionsForm);
   if (accion=="manualPag") {
     if (cantidadPaginas.value < 1) {
       alert ("la cantidad mínima es una pagina!");
-      cantidadPaginas.value = '';
+      cantidadPaginas.value = 1;
     }
 
     
@@ -96,7 +98,7 @@ console.log(this.optionsForm);
   if (accion=="manualIdio") {
     if (cantidadIdiomas.value < 1) {
       alert ("la cantidad mínima es un idioma!");
-      cantidadIdiomas.value = '';
+      cantidadIdiomas.value = 1;
     }
     this.cantidadIdiomas=cantidadIdiomas.value;
   }
